@@ -1,7 +1,7 @@
 const CACHE_NAME = 'stargate-psi-c-v1';
 const urlsToCache = [
-  '/stargate-protocolo/index.html',
-  '/stargate-protocolo/manifest.json'
+  '/stargate-protocol/index.html',
+  '/stargate-protocol/manifest.json'
 ];
 
 self.addEventListener('install', event => {
