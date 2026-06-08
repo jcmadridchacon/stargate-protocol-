@@ -2,7 +2,7 @@
   "name": "Protocolo Ψ(c) · The Stargate Project",
   "short_name": "Ψ(c) Auditor",
   "description": "Auditoría de coherencia operativa y soberanía personal --- herramienta offline, sin servidores.",
-  "start_url": "/stargate-protocolo/index.html",
+  "start_url": "/stargate-protocol/index.html",
   "display": "standalone",
   "theme_color": "#0b0e14",
   "background_color": "#03060b",
