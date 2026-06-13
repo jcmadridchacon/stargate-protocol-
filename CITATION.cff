@@ -1,0 +1,28 @@
+# CITATION.cff — Stargate Protocol
+
+cff-version: 1.2.0
+message: "Si utilizas este proyecto en tu trabajo, por favor cítalo usando la referencia siguiente."
+title: "Stargate Protocol: Arquitectura Ética, Epistemológica y Civilizatoria"
+abstract: >
+  Stargate Protocol es un marco unificado que integra el índice de coherencia informacional Ψ(c),
+  el auditor ético y metacognitivo ASI π‑1 y una arquitectura civilizatoria para sistemas humanos
+  y artificiales. Este repositorio contiene la versión pública del corpus, el código de referencia
+  y la documentación necesaria para reproducir el pipeline Ψ(c) y comprender la arquitectura completa.
+authors:
+  - family-names: "Madrid"
+    given-names: "Juan Carlos"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+keywords:
+  - "Ψ(c)"
+  - "coherencia informacional"
+  - "auditoría ética"
+  - "inteligencia artificial"
+  - "arquitectura civilizatoria"
+  - "Stargate Protocol"
+license: "CC0-1.0"
+repository-code: "https://github.com/jcmadridchacon/stargate-protocol-"
+type: software
+version: "1.0.0"
+date-released: "2026-06-13"
+doi: "10.5281/zenodo.TBD"
+url: "https://github.com/jcmadridchacon/stargate-protocol-"
