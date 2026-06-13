@@ -1,0 +1,5 @@
+1. Módulo Epistémico (Ψ(c))
+2. Módulo Ético (ASI π‑1)
+3. Módulo de Riesgo (IAS)
+4. Módulo Humano (Academia)
+5. Módulo de Custodia (Guardianes)
