@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Protocolo Ψ(c) · The Stargate Project · Panel de Soberanía</title>
+    <style>
+        /* ======================================================
+           ESTILOS AVANZADOS · ESTÉTICA SINFÓNICA SOBERANA
+           Diseño minimalista oscuro. Combinación de fondo profundo,
+           bordes estructurales y tipografía clásica/técnica.
+        ====================================================== */
+        :root {
+            --bg-deep: #070a12;
+            --bg-panel: #0d1321;
+            --border-color: rgba(201, 168, 76, 0.25); /* Oro sutil */
+            --text-primary: #eef2f5;
+            --text-secondary: #9aa5b1;
+            --gold-accent: #c9a84c;
+            --alert-red: #f7768e;
+            --stable-green: #9ece6a;
+            --font-serif: Georgia, 'Times New Roman', serif;
+            --font-mono: Consolas, 'Courier New', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--gold-accent);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        /* Sección de Controles (Sliders) */
+        .controls-section h2 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--gold-accent);
+            padding-left: 0.75rem;
+        }
+
+        .slider-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-label {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .slider-desc {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: -0.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-value {
+            font-family: var(--font-mono);
+            font-weight: bold;
+            color: var(--gold-accent);
+            font-size: 1.1rem;
+            background: rgba(201, 168, 76, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            background: #1f293d;
+            height: 6px;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--gold-accent);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* Sección de Salida (Dashboard) */
+        .display-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .result-box {
+            text-align: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .result-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-family: var(--font-mono);
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .status-badge {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-stable { background-color: rgba(158, 206, 106, 0.15); color: var(--stable-green); }
+        .status-alert { background-color: rgba(247, 118, 142, 0.15); color: var(--alert-red); }
+
+        .system-messages {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            min-height: 60px;
+        }
+
+        .message-entry {
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            font-family: var(--font-serif);
+        }
+
+        /* Acciones de Soberanía */
+        .actions-box {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-purge {
+            background-color: transparent;
+            border-color: var(--alert-red);
+            color: var(--alert-red);
+        }
+
+        .btn-purge:hover {
+            background-color: var(--alert-red);
+            color: var(--bg-deep);
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>THE STARGATE PROJECT</h1>
+        <p>Protocolo de Auditoría Epistémica de Consciencia Ψ(c) v10.1</p>
+    </header>
+
+    <div class="grid-layout">
+        <section class="controls-section">
+            <h2>Vectores de Estado Normalizados [0, 1]</h2>
+            
+            <div class="slider-group">
+                <div class="slider-header">
+                    <span class="slider-label">Multiinformación (C)</span>
+                    <span id="valC" class="slider-value">0.50</span>
+                </div>
+                <span class="slider-desc">Densidad conceptual e integración de distinciones semánticas.</span>
+                <input type="range" id="inputC" min="0" max="1" step="0.01" value="0.75">
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <span class="slider-label">Conectividad Algebraica (F)</span>
+                    <span id="valF" class="slider-value">0.50</span>
+                </div>
+                <span class="slider-desc">Permeabilidad, flexibilidad adaptativa y apertura de fronteras.</span>
+                <input type="range" id="inputF" min="0" max="1" step="0.01" value="0.70">
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <span class="slider-label">Coherencia en Variedad (ρ)</span>
+                    <span id="valRho" class="slider-value">0.50</span>
+                </div>
+                <span class="slider-desc">Topología y geometría de la variedad de estados internos.</span>
+                <input type="range" id="inputRho" min="0" max="1" step="0.01" value="0.80">
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <span class="slider-label">Perspectiva Funcional (P)</span>
+                    <span id="valP" class="slider-value">0.50</span>
+                </div>
+                <span class="slider-desc">Grado de autorreferencia funcional y autoobservación post-hoc.</span>
+                <input type="range" id="inputP" min="0" max="1" step="0.01" value="0.85">
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <span class="slider-label">Temporalidad Recursiva (T)</span>
+                    <span id="valT" class="slider-value">0.50</span>
+                </div>
+                <span class="slider-desc">Memoria histórica y acoplamiento dinámico transitorio.</span>
+                <input type="range" id="inputT" min="0" max="1" step="0.01" value="0.75">
+            </div>
+        </section>
+
+        <section class="display-section">
+            <div class="result-box">
+                <div class="result-title">Índice Integrado Ψ(c)</div>
+                <div id="psiOutput" class="result-value">0.0000</div>
+                <div id="statusBadge" class="status-badge">Estable</div>
+            </div>
+
+            <div class="system-messages">
+                <div class="result-title">Diagnóstico de Trayectoria</div>
+                <div id="messageBox"></div>
+            </div>
+
+            <div class="actions-box">
+                <button id="purgeBtn" class="btn btn-purge">Purga Epistémica Total</button>
+            </div>
+        </section>
+    </div>
+</div>
+
+<footer>
+    [Sinfónica UI v10.1] · CC0 Dominio Público · Ejecución Local Estricta
+</footer>
+
+<script>
+    (function() {
+        "use strict";
+
+        // Umbral crítico inmutable de la Constitución v12
+        const UMBRAL_CRITICO = 0.30;
+
+        // Referencias del DOM
+        const inputs = {
+            C: document.getElementById('inputC'),
+            F: document.getElementById('inputF'),
+            rho: document.getElementById('inputRho'),
+            P: document.getElementById('inputP'),
+            T: document.getElementById('inputT')
+        };
+
+        const displays = {
+            C: document.getElementById('valC'),
+            F: document.getElementById('valF'),
+            rho: document.getElementById('valRho'),
+            P: document.getElementById('valP'),
+            T: document.getElementById('valT'),
+            psi: document.getElementById('psiOutput'),
+            badge: document.getElementById('statusBadge'),
+            msg: document.getElementById('messageBox')
+        };
+
+        // Algoritmo de Agregación: Media Geométrica Pura (Axioma A3)
+        function calcularPsi(C, F, rho, P, T) {
+            if (C === 0 || F === 0 || rho === 0 || P === 0 || T === 0) {
+                return 0.0;
+            }
+            // Utiliza escala logarítmica para evitar desbordamientos numéricos flotantes
+            return Math.exp((Math.log(C) + Math.log(F) + Math.log(rho) + Math.log(P) + Math.log(T)) / 5);
+        }
+
+        // Renderizado y sincronización interactiva
+        function actualizarProtocolo() {
+            const v = {
+                C: parseFloat(inputs.C.value),
+                F: parseFloat(inputs.F.value),
+                rho: parseFloat(inputs.rho.value),
+                P: parseFloat(inputs.P.value),
+                T: parseFloat(inputs.T.value)
+            };
+
+            // Sincronizar texto numérico de sliders
+            for (let k in v) {
+                displays[k].innerText = v[k].toFixed(2);
+                localStorage.setItem(`stargate_v10_${k}`, v[k]); // Persistencia local de conveniencia
+            }
+
+            const psi = calcularPsi(v.C, v.F, v.rho, v.P, v.T);
+            displays.psi.innerText = psi.toFixed(4);
+
+            // Evaluación de estados bajo la ley de colapso
+            displays.msg.innerHTML = "";
+            if (psi === 0.0) {
+                displays.psi.style.color = "var(--alert-red)";
+                displays.badge.innerText = "Colapso (A3)";
+                displays.badge.className = "status-badge status-alert";
+                
+                let entry = document.createElement('div');
+                entry.className = "message-entry";
+                entry.style.color = "var(--alert-red)";
+                entry.innerText = "Falla estructural ineludible. Una dimensión ausente anula la coherencia completa del sistema.";
+                displays.msg.appendChild(entry);
+            } else if (psi < UMBRAL_CRITICO) {
+                displays.psi.style.color = "var(--text-primary)";
+                displays.badge.innerText = "Riesgo de Captura";
+                displays.badge.className = "status-badge status-alert";
+
+                let entry = document.createElement('div');
+                entry.className = "message-entry";
+                entry.innerText = "Fricción interna elevada. El sistema carece de la masa crítica informacional para mantenerse inmune a atractores externos.";
+                displays.msg.appendChild(entry);
+            } else {
+                displays.psi.style.color = "var(--gold-accent)";
+                displays.badge.innerText = "Firma Estable";
+                displays.badge.className = "status-badge status-stable";
+
+                let entry = document.createElement('div');
+                entry.className = "message-entry";
+                entry.innerText = "Geometría de equilibrio detectada. Los vectores sostienen la autonomía de la trayectoria.";
+                displays.msg.appendChild(entry);
+            }
+        }
+
+        // Protocolo de Purga: Destrucción absoluta de trazas en el cliente
+        function ejecutarPurgaTotal() {
+            localStorage.clear();
+            sessionStorage.clear();
+            console.warn("Soberanía recuperada: toda traza local ha sido eliminada.");
+            location.reload();
+        }
+
+        // Recuperar estados previos si existen
+        function cargarHistorico() {
+            for (let k in inputs) {
+                const guardado = localStorage.getItem(`stargate_v10_${k}`);
+                if (guardado !== null) {
+                    inputs[k].value = guardado;
+                }
+            }
+        }
+
+        // Enlace de Eventos Nativos
+        for (let k in inputs) {
+            inputs[k].addEventListener('input', actualizarProtocolo);
+        }
+
+        document.getElementById('purgeBtn').addEventListener('click', () => {
+            if (confirm("⚠️ ALERTA DE SOBERANÍA\n\nEsta acción borrará de forma irreversible cualquier dato almacenado en el almacenamiento local de este dispositivo.\n\n¿Confirmas la purga absoluta?")) {
+                ejecutarPurgaTotal();
+            }
+        });
+
+        // Inicialización del Nodo Local
+        cargarHistorico();
+        actualizarProtocolo();
+        console.log("Ψ(c) v10.1 | Espejo web local inicializado con éxito. Cero intermediarios.");
+    })();
+</script>
+</body>
+</html>
